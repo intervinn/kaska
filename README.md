@@ -5,9 +5,10 @@ I would be happy to see people help me with this, but for now I just occasionall
 
 This project is too raw and I make this specifically for my personal needs until people get interested in it.
 
-
 # Features I consider adding into Kaska
 * Installable via Aftman
 * Custom shell scripts
 * Clone packages from GitHub
 * Configure LSP to ignore modulesa
+
+yeah, even though the readme is promising, all thats done yet is init command...

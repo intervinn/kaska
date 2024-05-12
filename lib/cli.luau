@@ -7,7 +7,11 @@ function cli(args: {string})
     if not module then
         print("command not found")
     end
-    
+
+    local result = polisher.separate(args, module)
+    module.flags = result.flags
+    module.params = result.params
+
     module:exec(args)
 end
 

@@ -8,13 +8,12 @@ export type PolisherSeparateResult = {
 local polisher = {}
 polisher.__index = polisher
 
-function polisher.separate(args: {string}, flagsTemplate: {[string]: boolean}) : PolisherSeparateResult
-
+function polisher.separate(args: {string}, module) : PolisherSeparateResult
     local params = {}
-    local flags = flagsTemplate
+    local flags = module.flags
 
     for _,v in pairs(args) do
-        if strutil.starts(v, "--") and flags[v:sub(3)] then
+        if strutil.starts(v, "--") and flags[v:sub(3)] ~= nil then
             flags[v:sub(3)] = true
         else
             table.insert(params, v)

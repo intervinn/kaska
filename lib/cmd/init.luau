@@ -32,22 +32,25 @@ function init:exec()
 
     local prompt = {"name", "description", "main", "author"}
 
-    if self.flags["yes"] then
+    if not self.flags["yes"] then
         for _,v in pairs(prompt) do
             package[v] = stdio.prompt("text", v, package[v])
         end
     end
 
     fs.writeFile("kaska.luau", "return "..strutil.fromTable(package, 1))
-    
-    
+
     local rc = {}
     if fs.isFile(".luaurc") then
         serde.decode("json", fs.readFile(".luaurc"))
     end
 
-    rc["aliases"]["kaska"] = process.cwd + "lune_modules"
-    fs.writeFile(".luaurc", serde.encode("json", rc))
+    if not rc["aliases"] then
+        rc["aliases"] = {}
+    end
+
+    rc["aliases"]["kaska"] = `~/.kaska/`
+    fs.writeFile(".luaurc", serde.encode("json", rc, true))
 end
 
 return init
