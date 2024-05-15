@@ -48,7 +48,8 @@ function init:exec()
     if not rc["aliases"] then
         rc["aliases"] = {}
     end
-
+    
+    fs.writeDir("~/.kaska")
     rc["aliases"]["kaska"] = `~/.kaska/`
     fs.writeFile(".luaurc", serde.encode("json", rc, true))
 end
